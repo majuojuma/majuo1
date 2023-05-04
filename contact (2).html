@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Contact Us</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<style>
+        body{
+            background-color:rgb(38, 146, 47);
+        }
+        input{
+            justify-content: space-between;
+            padding: 5px;
+            border-radius: 3px;
+            margin: 10px;
+        }
+        label{
+            margin: 10px;
+        }
+        button{
+            padding: 7px;
+        }
+		
+	</style>
+</head>
+<body>
+	
+	<div id="map"></div>
+	<script>
+		
+	</script>
+
+	<!-- Contact Form -->
+	<h2>Contact Form</h2>
+	<form id="contact-form">
+		<label for="name">Name:</label>
+		<input type="text" id="name" name="name" required><br>
+
+
+		<label for="address">Address:</label>
+		<input type="text" id="address" name="address" required><br>
+
+		<label for="email">Email:</label>
+		<input type="email" id="email" name="email" required><br>
+
+		<label for="comments">Comments:</label>
+		<textarea id="comments" name="comments" required></textarea>
+        <br><br>
+
+		<button type="submit">Submit</button>
+	</form>
+
+	<script>
+		
+	document.getElementById("contact-form").addEventListener("submit", function(event) {
+		event.preventDefault();
+		let name = document.getElementById("name").value;
+		let address = document.getElementById("address").value;
+		let email = document.getElementById("email").value;
+		let comments = document.getElementById("comments").value;
+		let data = {
+			"name": name,
+			"address": address,
+			"email": email,
+			"comments": comments
+		};
+		localStorage.setItem('name',name);
+		localStorage.setItem('address',address);
+		localStorage.setItem('email',email);
+		localStorage.setItem('comments',comments);
+		localStorage.setItem("contact-data", JSON.stringify(data));
+		alert("Form data saved!");
+	});
+</script>
+	
+	<h2 style="margin-top: 80px;">Login</h2>
+	<form id="login-form">
+		<label for="username">Username:</label>
+		<input type="text" id="username" name="username" required><br>
+
+		<label for="password">Password:</label>
+		<input type="password" id="password" name="password" required><br>
+
+		<button type="submit">Submit</button>
+	</form>
+
+	<script>
+		
+		// Get the form element
+		const form = document.getElementById('login-form');
+
+		// Add an event listener for the form submission
+		form.addEventListener('submit', (event) => {
+			// Prevent the default form submission behavior
+			event.preventDefault();
+
+			// Get the form values
+			const username = document.getElementById('username').value;
+			const password = document.getElementById('password').value;
+
+			// Get the user data from Local Storage
+			const name = localStorage.getItem('name');
+			const address = localStorage.getItem('address');
+			 const email = localStorage.getItem('email');
+			const comments = localStorage.getItem('comments');
+				
+			// Check if the email and password match the stored data
+			if (username === "majuo" && password === "123") {
+				// Display the user data
+				alert(`Welcome, ${name}!\n\nYour address is ${address}.
+				\n\nYour comments were:\n${comments}`);
+			} else {
+				alert('Invalid email or password.');
+			}
+		});
+		</script>
+</body>
+</html>
